@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@utility links {
+    @apply flex items-center p-1.5 m-2 transition-all duration-500 hover:bg-[#474747] hover:rounded-2xl hover:py-2.5 cursor-pointer;
+}
+
+@utility title {
+    @apply text-xl font-bold text-[#434343] pl-2;
+} 
