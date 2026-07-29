@@ -6,7 +6,7 @@ interface UiContextType {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     activeNote: Notes | null;
     setActiveNote: React.Dispatch<React.SetStateAction<Notes | null>>;
-    activeNoteId: string | undefined | null,
+    activeNoteId: string |  null,
 }
 
 const UiContext = createContext<UiContextType | null>(null);
@@ -14,7 +14,7 @@ const UiContext = createContext<UiContextType | null>(null);
 function UiContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setOpen] = useState(window.innerWidth <= 768);
     const [activeNote, setActiveNote] = useState<Notes | null>(null);
-    const activeNoteId = activeNote?.id;
+    const activeNoteId = activeNote?.id ?? null ; 
     return (
         <UiContext.Provider value={{ isOpen, setOpen, activeNote, setActiveNote, activeNoteId }}>
             {children}

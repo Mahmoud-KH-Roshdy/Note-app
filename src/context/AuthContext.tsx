@@ -7,7 +7,7 @@ import { auth } from "../services/firebase";
 
 
 interface AuthContextType {
-    user: User | undefined,
+    user: User | null,
     loading: boolean,
     setUser: React.Dispatch<React.SetStateAction<User | null>>
 }

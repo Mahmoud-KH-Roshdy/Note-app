@@ -5,8 +5,11 @@ import ConfirmDeleteModal from './ConfirmDeleteModal';
 import deleteNote from '../services/deleteNote';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-
-export default function DeleteNote({ isUpdate, isCreating }) {
+interface PropsType{
+    isUpdate:boolean,
+    isCreating:boolean,
+}
+export default function DeleteNote({ isUpdate, isCreating }:PropsType) {
     const { activeNoteId, setActiveNote } = useUi();
     const [isOpen, setOpen] = useState<boolean>(false);
     const queryClient = useQueryClient();
@@ -22,8 +25,9 @@ export default function DeleteNote({ isUpdate, isCreating }) {
             console.error(error.message);
         }
     })
-    function hanldeDelete(id: string) {
-        deletedFn(id);
+    function hanldeDelete() {
+if (!activeNoteId) return;
+        deletedFn(activeNoteId);
     }
     return (
         <>
@@ -35,7 +39,7 @@ export default function DeleteNote({ isUpdate, isCreating }) {
             >
                 delete
             </button>
-            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen}  title={"Del"} confrimText={"delete Note"} children={"Are you sure you want to delete this note? This action cannot be undone."} isDeleting={isDeleting} onConfirm={() => hanldeDelete(activeNoteId)} />
+            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen}  title={"Delete"} confrimText={"delete Note"} children={"Are you sure you want to delete this note? This action cannot be undone."} isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
         </>
     )
 }
