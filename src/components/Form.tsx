@@ -5,13 +5,13 @@ import { useUi } from "../context/UiContext";
 import type { Notes } from "../services/getNotes";
 import { toast } from "react-hot-toast";
 import updateNote from "../services/updateNote";
-import DeleteNote from "./deleteNote";
+import DeleteNote from "./DeleteNote";
 
 
 interface NoteInputs {
     title: string;
     body: string;
-    time: string | any ,
+    time: string  ,
 }
 
 export default function Form() {
@@ -28,7 +28,7 @@ export default function Form() {
                 title: variables.title,
                 body: variables.body,
                 id: data,
-                time: new Date(),
+                time: new Date().toISOString(),
             }
 
             setActiveNote(newNote);

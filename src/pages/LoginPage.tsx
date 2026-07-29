@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { login } from "../services/Auth";
+import { FirebaseError } from "firebase/app";
 
 interface loginData {
     email: string,
@@ -22,15 +23,21 @@ export default function LoginPage() {
         onSuccess: (userCredential) => {
             setUser(userCredential.user);
             toast.success(" Login Successfully");
-            navigate("/");
+            navigate("/", { replace: true });
         },
-        onError: (error) => {
+        onError: (error: unknown) => {
             console.error("Login error", error);
-            if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
-                toast.error("Incorrect email or password");
-            } else {
-                toast.error("Something went wrong, please try again");
+            if (error instanceof FirebaseError) {
+                if (
+                    error.code === "auth/invalid-credential" ||
+                    error.code === "auth/user-not-found" ||
+                    error.code === "auth/wrong-password"
+                ) {
+                    toast.error("Incorrect email or password");
+                    return;
+                }
             }
+            toast.error("Something went wrong, please try again");
         }
     });
 

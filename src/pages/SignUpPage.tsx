@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { signUp } from "../services/Auth";
+import { FirebaseError } from "firebase/app";
 
 interface SignUpData {
   email: string,
@@ -22,8 +23,27 @@ export default function SignUpPage() {
     onSuccess: (userCredential) => {
       setUser(userCredential.user);
       toast.success("Created Account Successfully");
-      navigate("/");
+      navigate("/", { replace: true });
     },
+onError: (error: unknown) => {
+      console.error("Sign up error", error);
+
+      if (error instanceof FirebaseError) {
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("This email is already registered");
+          return;
+        }
+        if (error.code === "auth/weak-password") {
+          toast.error("Password should be at least 6 characters");
+          return;
+        }
+        if (error.code === "auth/invalid-email") {
+          toast.error("Invalid email address format");
+          return;
+        }
+      }
+      toast.error("Failed to create account, please try again");
+    }
   });
 
   function onSubmit(data: SignUpData) {
