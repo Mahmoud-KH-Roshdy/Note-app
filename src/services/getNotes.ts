@@ -1,5 +1,5 @@
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "./firebase";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
+import { auth, db } from "./firebase";
 
 export interface Notes {
     title: string ;
@@ -9,8 +9,9 @@ export interface Notes {
 }
 
 async function getNotes():Promise<Notes[]> {
+    const user = auth.currentUser;
     const notesCollection = collection(db,"Notes");
-    const q = query(notesCollection, orderBy("time", "desc"));
+    const q = query(notesCollection,where("userId", "==", user?.uid), orderBy("time", "desc"));
     const notes = await getDocs(q);
     return notes.docs.map((doc) => (
         {...doc.data()  as Omit<Notes,"id">  ,id:doc.id}
@@ -18,4 +19,4 @@ async function getNotes():Promise<Notes[]> {
 }
 
 
-export default getNotes
+export default getNotes;

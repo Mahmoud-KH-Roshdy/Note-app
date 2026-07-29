@@ -12,7 +12,7 @@ function GetNotes() {
     });
     const {  setActiveNote , activeNoteId } = useUi();
     if (isPending) return <Loading />;
-    if (error) return <p>error</p> ;
+    if (error) return  <p> {error.message}   </p> ;
     return (
         <section className=" grid grid-cols-[auto] py-4 gap-4 ">
             {data?.map((note) => <div className={` p-4 cursor-pointer   ${activeNoteId === note.id ? `  border-l-5 border-[#D64E51]  bg-[#F4F5F7] rounded-xl` : ` border-b border-[#C3C5C7] `} `} key={note.id} onClick={() => setActiveNote(note)}>

@@ -1,19 +1,36 @@
-import Sidebar from "./components/Sidebar"
-import ShowNotes from "./components/ShowNotes";
-import Form from "./components/Form";
-import { useUi } from "./context/UiContext";
+
+import { createBrowserRouter, RouterProvider } from "react-router";
+import NotePage from "./pages/NotePage";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Setting from "./pages/Setting";
 
 
 function App() {
-  const { activeNote } = useUi();
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <ProtectedRoute>
+        <NotePage />
+      </ProtectedRoute>,
+    },
+    {
+      path: "/sign",
+      element: <SignUpPage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/setting",
+      element: <Setting />,
+    },
+  ])
+
   return (
-    <main className={` overflow-hidden  h-screen  block  sm:grid lg:grid-cols-[auto_350px_1fr] sm:grid-cols-[auto_350px_1fr] `}>
-        <Sidebar/>
-        <ShowNotes/>
-        <div className="bg-gray-50 h-full overflow-hidden">
-          <Form key={activeNote?.id || "new"}/>
-        </div>
-    </main>
+    <RouterProvider router={router} />
   )
 }
 export default App;

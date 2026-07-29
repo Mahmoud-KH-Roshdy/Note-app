@@ -2,10 +2,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import newNotes from "../services/addNotes";
 import { useUi } from "../context/UiContext";
-import deleteNote from "../services/deleteNote";
 import type { Notes } from "../services/getNotes";
 import { toast } from "react-hot-toast";
 import updateNote from "../services/updateNote";
+import DeleteNote from "./deleteNote";
 
 
 interface NoteInputs {
@@ -40,29 +40,23 @@ export default function Form() {
         }
     })
     function onSumbit(data: NoteInputs) {
-        if (isActiveNoteId && activeNote && activeNote.id) {
-            
-            updateFn({ id: activeNote.id, data });
+        if (isActiveNoteId && activeNote && activeNote.id ) {
+            if( data.title.trim() === activeNote.title &&  data.body.trim() === activeNote.body) {
+                toast.error("No change were made")
+                return ;
+            }
+            else{
+                updateFn({ id: activeNote.id, data });
+            }
         } else {
-            createdFn(data);
+            if(!data.title.trim() ||  !data.body.trim()){
+                toast.error("Please Enter a valid title and note context");
+                return;
+            } else{
+                createdFn(data);
+            }
         }
     }
-    // Delete A Note
-     const { mutate: deletedFn, isPending: isDeleting } = useMutation({
-         mutationFn: deleteNote,
-         onSuccess: () => {
-             queryClient.invalidateQueries({ queryKey: ["Notes"] });
-             setActiveNote(null);
-             toast.success("Delteted Successfully");
-         },
-         onError: (error) => {
-             toast.error("Failed To Delete");
-             console.error(error.message);
-         }
-     })
-     function hanldeDelete(id: string ) {
-         deletedFn(id);
-     }
     // Update a Note  
     const { mutate: updateFn, isPending: isUpdate } = useMutation({
         mutationFn: updateNote,
@@ -82,19 +76,11 @@ export default function Form() {
                     <button
                         type="submit"
                         className="bg-[#434343] text-white font-medium text-sm px-5 py-2 rounded-lg self-end hover:bg-black transition-all cursor-pointer"
-                        disabled={isCreating || isDeleting}
+                        disabled={isCreating ||  isUpdate}
                     >
                         {`${isActiveNoteId ? "Edit Note" : "Save Note"}`}
                     </button>
-
-                    <button
-                        type="button"
-                        className="bg-[#434343] text-white font-medium text-sm px-5 py-2 rounded-lg self-end hover:bg-black transition-all cursor-pointer"
-                        disabled={isCreating || isDeleting || isUpdate}
-                        onClick={() => hanldeDelete(activeNoteId)}
-                    >
-                        delete
-                    </button>
+                    <DeleteNote isCreating={isCreating} isUpdate={isUpdate}/>
                 </div>
 
             </form>

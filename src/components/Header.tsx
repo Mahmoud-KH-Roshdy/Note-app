@@ -8,8 +8,8 @@ function Header() {
     return (
         <div>
             <div className="flex justify-between items-center">
-                <div className="flex place-content-center">
-                    {isOpen ? <span onClick={() => setOpen((open: boolean) => !open)}> <HiBars3BottomRight className="fill-[#7B7D7D]  h-auto w-7 cursor-pointer transition-all duration-750 hover:fill-white " /> </span> : ""}
+                <div className="flex place-content-center ">
+                    {isOpen ? <span onClick={() => setOpen((open: boolean) => !open)}> <HiBars3BottomRight className="hover:bg-slate-700/50 fill-[#7B7D7D]  h-auto w-7 cursor-pointer hover:fill-white transition-colors " /> </span> : ""}
                     <h1 className="text-xl font-bold text pl-2 text-[#434343] ">Notes</h1>
                 </div>
                 <div className=" flex place-content-center ">

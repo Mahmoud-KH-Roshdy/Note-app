@@ -6,7 +6,7 @@ interface UiContextType {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
     activeNote: Notes | null;
     setActiveNote: React.Dispatch<React.SetStateAction<Notes | null>>;
-    activeNoteId: string | undefined,
+    activeNoteId: string | undefined | null,
 }
 
 const UiContext = createContext<UiContextType | null>(null);
