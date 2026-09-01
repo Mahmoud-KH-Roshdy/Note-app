@@ -5,28 +5,25 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Setting from "./pages/Setting";
+import Layout from "./components/Layout";
 
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <ProtectedRoute>
-        <NotePage />
-      </ProtectedRoute>,
+      element: (
+      <ProtectedRoute>
+        <Layout/>
+      </ProtectedRoute>
+      ),
+      children:[
+            {path: "/",element: <NotePage />},
+            {path: "/note/:id",element: <NotePage />},
+            {path: "/setting",element: <Setting />,},
+      ]
     },
-    {
-      path: "/sign",
-      element: <SignUpPage />,
-    },
-    {
-      path: "/login",
-      element: <LoginPage />,
-    },
-    {
-      path: "/setting",
-      element: <Setting />,
-    },
+    {path: "/sign",element: <SignUpPage />,},
+    {path: "/login", element: <LoginPage />, },
   ])
 
   return (

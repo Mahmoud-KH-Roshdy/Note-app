@@ -46,55 +46,57 @@ export default function LoginPage() {
     }
 
     return (
-        <main className="flex min-h-screen w-screen items-center justify-center bg-slate-950 p-4 font-sans text-white">
+        <main className="flex min-h-screen w-screen items-center justify-center bg-gray-50 p-4 font-sans">
 
-            <div className="w-full max-w-md rounded-2xl bg-slate-900 p-8 shadow-2xl border border-slate-800/80">
+            <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg border border-gray-200">
 
                 <div className="text-center mb-8">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-800 text-slate-300 mb-3 border border-slate-700">
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#F4F5F7] text-[#D64E51] mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
                         </svg>
                     </div>
-                    <h1 className="text-2xl font-bold tracking-tight text-slate-100">Login into your account</h1>
-                    <p className="text-slate-400 text-sm mt-1.5">Welcome back login to organize your personal notes</p>
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900">Login into your account</h1>
+                    <p className="text-gray-500 text-sm mt-1.5">Welcome back, login to organize your personal notes</p>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-2">Email address</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Email address</label>
                         <input
                             type="email"
-                            className={`w-full rounded-xl bg-slate-850 border ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-slate-700 focus:border-slate-500'} p-3 text-sm text-white focus:outline-none transition-all placeholder:text-slate-500`}
+                            autoComplete="email"
+                            className={`w-full rounded-xl bg-gray-50 border ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-[#D64E51]'} p-3 text-sm text-gray-900 focus:outline-none transition-all placeholder:text-gray-400`}
                             placeholder="name@example.com"
                             {...register("email", {
                                 required: "The email is required to create an account"
                             })}
                         />
-                        {errors.email && <span className="text-red-400 text-xs mt-1.5 block font-medium">{errors.email.message}</span>}
+                        {errors.email && <span className="text-red-500 text-xs mt-1.5 block font-medium">{errors.email.message}</span>}
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                         <input
                             type="password"
-                            className={`w-full rounded-xl bg-slate-850 border ${errors.password ? 'border-red-500 focus:border-red-500' : 'border-slate-700 focus:border-slate-500'} p-3 text-sm text-white focus:outline-none transition-all placeholder:text-slate-500`}
+                            autoComplete="current-password"
+                            className={`w-full rounded-xl bg-gray-50 border ${errors.password ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-[#D64E51]'} p-3 text-sm text-gray-900 focus:outline-none transition-all placeholder:text-gray-400`}
                             placeholder="••••••••"
                             {...register("password", {
-                                required: "The password is required to create an account"
+                                required: "The password is required to create an account",
                             })}
                         />
-                        {errors.password && <span className="text-red-400 text-xs mt-1.5 block font-medium">{errors.password.message}</span>}
+                        {errors.password && <span className="text-red-500 text-xs mt-1.5 block font-medium">{errors.password.message}</span>}
                     </div>
 
                     <button
                         disabled={isSubmitting}
-                        className="w-full rounded-xl bg-slate-100 p-3 text-sm font-semibold text-slate-950 hover:bg-slate-200 active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-black/20"
+                        className="w-full rounded-xl bg-[#D64E51] p-3 text-sm font-semibold text-white hover:bg-[#c23e41] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2 cursor-pointer"
                     >
                         {isSubmitting ? (
                             <>
-                                <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-slate-950"></div>
+                                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white/30 border-t-white"></div>
                                 Login...
                             </>
                         ) : (
@@ -103,10 +105,10 @@ export default function LoginPage() {
                     </button>
                 </form>
                 <div className="text-center mt-6">
-                    <p className="text-slate-400 text-xs">
+                    <p className="text-gray-500 text-xs">
                         Create an account?{" "}
                         <span
-                            className="text-white font-medium cursor-pointer hover:underline"
+                            className="text-[#D64E51] font-medium cursor-pointer hover:underline"
                             onClick={() => navigate("/sign")}
                         >
                             Sign up

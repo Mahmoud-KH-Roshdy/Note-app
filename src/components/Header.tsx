@@ -2,9 +2,10 @@ import { HiBars3BottomRight } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { RiStickyNoteAddFill } from "react-icons/ri";
 import { useUi } from "../context/UiContext";
+import { useNavigate } from "react-router";
 function Header() {
-    const { isOpen, setOpen, setActiveNote } = useUi();
-
+    const { isOpen, setOpen } = useUi();
+const navigate = useNavigate();
     return (
         <div>
             <div className="flex justify-between items-center">
@@ -14,7 +15,7 @@ function Header() {
                 </div>
                 <div className=" flex place-content-center ">
                     <IoIosSearch className="h-auto w-8 cursor-pointer fill-[#8E8E8E] pr-2  transition-all duration-500 hover:fill-black" />
-                    <RiStickyNoteAddFill onClick={() => setActiveNote(null)} className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" />
+                    <RiStickyNoteAddFill onClick={() => navigate("/") } className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" />
                 </div>
             </div>
         </div>

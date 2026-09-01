@@ -1,5 +1,5 @@
+import GetNotes from "./GetNotes";
 import Header from "./Header"
-import GetNotes from "../features/Notes/GetNotes";
 export default function ShowNotes() {
 
     return (
