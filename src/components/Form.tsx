@@ -1,6 +1,6 @@
 
 import {  useParams } from "react-router";
-import getNoteById from "../services/getNoteByid";
+import getNoteByid from "../services/getNoteByid";
 import Loading from "./Loading";
 import NoteForm from "./NoteForm";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +11,7 @@ export default function Form() {
     // Get Active Data
     const { data: activeNote, isLoading: isNoteLoading, error: noteError } = useQuery<Notes>({
         queryKey: ["Notes", activeNoteId],
-        queryFn: () => getNoteById(activeNoteId),
+        queryFn: () => getNoteByid(activeNoteId),
         enabled: isActiveNoteId,
     });
         if (isActiveNoteId && isNoteLoading) {

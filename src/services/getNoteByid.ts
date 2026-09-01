@@ -3,7 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "./firebase";
 import type { Notes } from "./getNotes";
 
-async function getNoteById(id: string | undefined ):Promise<Notes> {
+async function getNoteByid(id: string | undefined ):Promise<Notes> {
     const noteRef = doc(db, "Notes", id);
     const snapshot = await getDoc(noteRef);
     if (!snapshot.exists()) {
@@ -13,4 +13,4 @@ async function getNoteById(id: string | undefined ):Promise<Notes> {
 }
 
 
-export default getNoteById;
+export default getNoteByid;
