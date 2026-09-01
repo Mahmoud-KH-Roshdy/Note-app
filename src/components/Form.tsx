@@ -1,6 +1,6 @@
 
 import {  useParams } from "react-router";
-import getNoteById from "../services/getNoteById";
+import getNoteById from "../services/getNoteByid";
 import Loading from "./Loading";
 import NoteForm from "./NoteForm";
 import { useQuery } from "@tanstack/react-query";
