@@ -1,24 +1,25 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useUi } from '../context/UiContext';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import deleteNote from '../services/deleteNote';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-interface PropsType{
-    isUpdate:boolean,
-    isCreating:boolean,
+import { useNavigate, useParams } from 'react-router';
+interface PropsType {
+    isUpdate: boolean,
+    isCreating: boolean,
 }
-export default function DeleteNote({ isUpdate, isCreating }:PropsType) {
-    const { activeNoteId, setActiveNote } = useUi();
+export default function DeleteNote({ isUpdate, isCreating }: PropsType) {
+    const {id} = useParams()
     const [isOpen, setOpen] = useState<boolean>(false);
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { mutate: deletedFn, isPending: isDeleting } = useMutation({
         mutationFn: deleteNote,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["Notes"] });
-            setActiveNote(null);
             toast.success("Delteted Successfully");
+            navigate("/")
         },
         onError: (error) => {
             toast.error("Failed To Delete");
@@ -26,8 +27,8 @@ export default function DeleteNote({ isUpdate, isCreating }:PropsType) {
         }
     })
     function hanldeDelete() {
-if (!activeNoteId) return;
-        deletedFn(activeNoteId);
+        if (!id) return;
+        deletedFn(id);
     }
     return (
         <>
@@ -39,7 +40,7 @@ if (!activeNoteId) return;
             >
                 delete
             </button>
-            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen}  title={"Delete"} confrimText={"delete Note"} children={"Are you sure you want to delete this note? This action cannot be undone."} isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
+            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen} title={"Delete"} confrimText={"delete Note"} children={"Are you sure you want to delete this note? This action cannot be undone."} isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
         </>
     )
 }

@@ -1,22 +1,19 @@
 import React, { createContext, useContext, useState, type ReactNode } from "react";
-import type { Notes } from "../services/getNotes";
 
 interface UiContextType {
     isOpen: boolean;
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    activeNote: Notes | null;
-    setActiveNote: React.Dispatch<React.SetStateAction<Notes | null>>;
-    activeNoteId: string |  null,
+    showFormMobile:boolean;
+    setShowFormMobile:React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UiContext = createContext<UiContextType | null>(null);
 
 function UiContextProvider({ children }: { children: ReactNode }) {
     const [isOpen, setOpen] = useState(window.innerWidth <= 768);
-    const [activeNote, setActiveNote] = useState<Notes | null>(null);
-    const activeNoteId = activeNote?.id ?? null ; 
+    const [showFormMobile, setShowFormMobile] = useState(false);
     return (
-        <UiContext.Provider value={{ isOpen, setOpen, activeNote, setActiveNote, activeNoteId }}>
+        <UiContext.Provider value={{ isOpen, setOpen , showFormMobile ,setShowFormMobile  }}>
             {children}
         </UiContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { useMutation,  useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import newNotes from "../services/addNotes";
 import { toast } from "react-hot-toast";
@@ -6,22 +6,24 @@ import updateNote from "../services/updateNote";
 import DeleteNote from "./DeleteNote";
 import type { Notes } from "../services/getNotes";
 import { useNavigate } from "react-router";
+import { useUi } from "../context/UiContext";
+import FormError from "./FormError";
 interface NoteInputs {
     title: string;
     body: string;
     time: string;
 }
 interface NoteFormInput {
-    activeNote: Notes | undefined ;
-    isActiveNoteId:boolean;
+    activeNote: Notes | undefined;
+    isActiveNoteId: boolean;
 }
 
-export default function Form({activeNote,isActiveNoteId}:NoteFormInput) {
+export default function Form({ activeNote, isActiveNoteId }: NoteFormInput) {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const { register, handleSubmit} = useForm<NoteInputs>({ defaultValues: activeNote ? activeNote : {} });
+    const { register, handleSubmit ,formState: { errors } } = useForm<NoteInputs>({ defaultValues: activeNote ? activeNote : {} });
     // Create A New Note
-    const { mutate: createdFn, isPending: isCreating } = useMutation({
+    const { mutate: createdFn, isPending: isCreating  } = useMutation({
         mutationFn: newNotes,
         onSuccess: (data) => {
             queryClient.invalidateQueries({ queryKey: ["Notes"] });
@@ -33,8 +35,9 @@ export default function Form({activeNote,isActiveNoteId}:NoteFormInput) {
             console.error(error.message);
         }
     })
+    const { showFormMobile } = useUi();
     function onSumbit(data: NoteInputs) {
-        if (isActiveNoteId && activeNote && activeNote.id) {
+        if ( isActiveNoteId &&  activeNote ) {
             if (data.title.trim() === activeNote.title && data.body.trim() === activeNote.body) {
                 toast.error("No change were made")
                 return;
@@ -43,13 +46,8 @@ export default function Form({activeNote,isActiveNoteId}:NoteFormInput) {
                 updateFn({ id: activeNote.id, data });
             }
         } else {
-            if (!data.title.trim() || !data.body.trim()) {
-                toast.error("Please Enter a valid title and note context");
-                return;
-            } else {
                 createdFn(data);
             }
-        }
     }
     // Update a Note  
     const { mutate: updateFn, isPending: isUpdate } = useMutation({
@@ -59,16 +57,18 @@ export default function Form({activeNote,isActiveNoteId}:NoteFormInput) {
             toast.success("Update Successfully")
         }
     })
-    
+
 
 
     return (
-        <div className={`bg-gray-50 h-full overflow-hidden ${isActiveNoteId ? `` : `hidden` }`}>
-            <form className={`p-4 sm:flex sm:flex-col sm:justify-center h-full gap-4 ${isActiveNoteId ? `flex flex-col justify-center` : `hidden` }`} onSubmit={handleSubmit(onSumbit)} >
+        <div className={`sm:block bg-gray-50 h-full overflow-hidden ${isActiveNoteId || showFormMobile ? `` : `hidden`}`} >
+            <form className={`p-4 sm:flex sm:flex-col sm:justify-center h-full gap-4 ${isActiveNoteId || showFormMobile ? `flex flex-col justify-center` : `hidden`}`} onSubmit={handleSubmit(onSumbit)} >
                 <header className="flex justify-center items-center ">
                     <input type="text" className="focus:outline-0 title  text-[18px] w-full" placeholder="Title" {...register("title", { required: "The title is requrid to add new note" })} />
+                    <FormError message={errors.title?.message} />
                 </header>
                 <textarea id="text" className=" flex-1 w-full focus:outline-0 resize-none text-xl" placeholder="Note.." {...register("body", { required: "The note is requrid to add new note" })}></textarea>
+                <FormError message={errors.body?.message} />
                 <div className="flex justify-center gap-2">
                     <button
                         type="submit"
