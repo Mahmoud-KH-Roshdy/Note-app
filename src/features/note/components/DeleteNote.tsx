@@ -1,6 +1,6 @@
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import ConfirmDeleteModal from './ConfirmDeleteModal';
+import ConfirmDeleteModal from '../../../components/ConfirmDeleteModal';
 import deleteNote from '../services/deleteNote';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';

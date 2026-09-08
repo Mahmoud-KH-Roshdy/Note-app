@@ -6,8 +6,8 @@ import updateNote from "../services/updateNote";
 import DeleteNote from "./DeleteNote";
 import type { Notes } from "../services/getNotes";
 import { useNavigate } from "react-router";
-import { useUi } from "../context/UiContext";
-import FormError from "./FormError";
+import { useUi } from "../../../context/UiContext";
+import FormError from "../../../components/FormError";
 interface NoteInputs {
     title: string;
     body: string;

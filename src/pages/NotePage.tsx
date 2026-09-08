@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
-import Form from "../components/Form"
-import ShowNotes from "../components/ShowNotes";
+import Form from "../features/note/components/Form"
+import ShowNotes from "../features/note/components/ShowNotes";
 export default function NotePage() {
     const { id } = useParams();
     return (

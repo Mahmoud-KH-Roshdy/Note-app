@@ -1,5 +1,5 @@
 import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
-import { auth, db } from "./firebase";
+import { auth, db } from "../../../services/firebase";
 
 export interface Notes {
     title: string ;

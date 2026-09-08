@@ -13,7 +13,11 @@ const liLists = [
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useUi();
-
+  function handleClickOnMobile(){
+    if(window.innerWidth <= 768){
+      setOpen(() => true)
+    }
+  }
   return (
     <>
       {!isOpen && (
@@ -22,7 +26,7 @@ export default function Sidebar() {
           className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm transition-opacity md:hidden"
         />
       )}
-
+      <div>
       <aside
         className={`
           dark:bg-[#1F1F1F] bg-[#2E3235] selection:text-white text-[#FCFCFC]
@@ -46,7 +50,7 @@ export default function Sidebar() {
         </div>
         <ul className="flex flex-col gap-1 text-[16px]">
           {liLists.map((list) => (
-            <Link to={list.path} key={list.id}>
+            <Link to={list.path} key={list.id} onClick={handleClickOnMobile}>
             <li
               className="flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer hover:bg-[#474747] transition-all duration-200 active:scale-[0.98]"
             >
@@ -57,6 +61,7 @@ export default function Sidebar() {
           ))}
         </ul>
       </aside>
+            </div>
     </>
   );
 }

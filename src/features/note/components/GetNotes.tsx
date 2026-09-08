@@ -2,11 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 import getNotes, { type Notes } from "../services/getNotes";
-import Loading from "./Loading"
-import { time } from "../utils/helpers";
+import Loading from "../../../components/Loading"
+import { time } from "../../../utils/helpers";
 import { Link, useParams } from "react-router";
 import EmptyNotes from "./EmptyNotes";
-import { useUi } from "../context/UiContext";
+import { useUi } from "../../../context/UiContext";
 function GetNotes() {
     const { isPending, error, data: notes } = useQuery<Notes[]>({
         queryKey: ["Notes"],

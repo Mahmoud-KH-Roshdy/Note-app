@@ -1,5 +1,5 @@
 import { FiFileText } from 'react-icons/fi';
-import { useUi } from '../context/UiContext';
+import { useUi } from '../../../context/UiContext';
 export default function EmptyNotes() {
     const {showFormMobile}= useUi()
     return (

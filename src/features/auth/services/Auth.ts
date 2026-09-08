@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase";
+import { auth } from "../../../services/firebase";
 
 export function signUp(email: string, password: string) {
     return createUserWithEmailAndPassword(auth, email, password);

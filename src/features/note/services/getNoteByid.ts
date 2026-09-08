@@ -1,6 +1,6 @@
 
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import { db } from "../../../services/firebase";
 import type { Notes } from "./getNotes";
 
 async function getNoteByid(id: string | undefined ):Promise<Notes> {

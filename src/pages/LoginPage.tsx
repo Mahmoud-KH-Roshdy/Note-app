@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { login } from "../services/Auth";
+import { login } from "../features/auth/services/Auth";
 import { FirebaseError } from "firebase/app";
 
 interface loginData {

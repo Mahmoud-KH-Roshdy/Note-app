@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
-import { signUp } from "../services/Auth";
+import { signUp } from "../features/auth/services/Auth";
 import { FirebaseError } from "firebase/app";
 
 interface SignUpData {

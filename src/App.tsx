@@ -4,7 +4,7 @@ import NotePage from "./pages/NotePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Setting from "./pages/Setting";
+import Setting from "./pages/SettingPage";
 import Layout from "./components/Layout";
 
 
