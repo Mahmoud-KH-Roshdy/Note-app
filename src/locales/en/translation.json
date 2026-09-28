@@ -1,0 +1,30 @@
+{
+  "auth": {
+    "login": "Log In",
+    "createAccount": "Create Account",
+    "signOut": "Sign Out",
+    "deleteAccount": "Delete Account"
+  },
+  "notes": {
+    "title": "Notes",
+    "titlePlaceholder": "Title",
+    "notePlaceholder": "Note...",
+    "noNotesYet": "No notes yet",
+    "createFirstNote": "Create your first note to get started",
+    "saveNote": "Save Note",
+    "editNote": "Edit Note",
+    "deleteNote": "Delete Note",
+    "deleteNotes": "Delete Notes"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "modals": {
+    "deleteNote": {
+      "title": "Delete",
+      "confirmText": "Delete Note",
+      "message": "Are you sure you want to delete this note? This action cannot be undone."
+      
+    }
+  }
+}

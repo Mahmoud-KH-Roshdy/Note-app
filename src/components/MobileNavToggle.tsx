@@ -20,10 +20,10 @@ export default function MobileNavToggle() {
         }
     }
     return (
-        <div onClick={() => handleClick()}>
+        <button onClick={() => handleClick()}>
             {
-                isFormOpen ? <RiArrowLeftLine className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" /> : <RiStickyNoteAddFill className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" />
+                isFormOpen ? <RiArrowLeftLine aria-label="get back" className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" /> : <RiStickyNoteAddFill aria-label="Add new Note" className="h-auto w-5 cursor-pointer fill-[#8E8E8E] transition-all duration-500 hover:fill-black" />
             }
-        </div>
+        </button>
     )
 }

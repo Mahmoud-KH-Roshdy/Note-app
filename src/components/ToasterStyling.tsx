@@ -3,7 +3,7 @@ import toast, { ToastBar, Toaster } from "react-hot-toast";
 function ToasterStyling() {
     return (
         <Toaster 
-            position="top-right"
+            position="top-center"
             gutter={12}
             containerStyle={{ margin: "8px" }}
             toastOptions={{

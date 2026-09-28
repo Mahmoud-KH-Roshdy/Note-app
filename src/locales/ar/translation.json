@@ -1,0 +1,29 @@
+{
+    "auth": {
+        "login": "تسجيل الدخول",
+        "createAccount": "إنشاء حساب",
+        "signOut": "تسجيل الخروج",
+        "deleteAccount": "حذف الحساب"
+    },
+    "notes": {
+        "title": "الملاحظات",
+        "titlePlaceholder": "العنوان",
+        "notePlaceholder": "ملاحظة...",
+        "noNotesYet": "لا توجد ملاحظات بعد",
+        "createFirstNote": "أنشئ ملاحظتك الأولى للبدء",
+        "saveNote": "حفظ الملاحظة",
+        "editNote": "تعديل الملاحظة",
+        "deleteNote": "حذف الملاحظة",
+        "deleteNotes": "حذف الملاحظات"
+    },
+    "settings": {
+        "title": "الإعدادات"
+    },
+    "modals": {
+        "deleteNote": {
+            "title": "حذف",
+            "confirmText": "حذف الملاحظة",
+            "message": "انت متاكد انك عايز تمسح النوتة؟ القرار دا مفيش رجعة فيه"
+        }
+    }
+}

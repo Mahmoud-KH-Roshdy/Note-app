@@ -23,12 +23,12 @@ export default function NoteSetting() {
         <section>
             <h1 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Notes</h1>
             <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100">
-                <SettingActionRow title="Delete all notes" description="Permanently remove every note you've written<" onClick={() => setWantDeleteNotes(true)} disabled={isDeleting} buttonText=" Delete Notes" buttonVariant="danger" />
+                <SettingActionRow title="Delete all notes" description="Permanently remove every note you've written" onClick={() => setWantDeleteNotes(true)} disabled={isDeleting} buttonText=" Delete Notes" buttonVariant="danger" />
                 <ConfirmDeleteModal
                     isOpen={wantDeleteNotes}
                     onOpenChange={setWantDeleteNotes}
                     title={"Delete Notes"}
-                    confrimText={"Delete Notes"}
+                    confirmText={"Delete Notes"}
                     children={"Are you sure you want to delete All Notes?"}
                     isDeleting={isDeleting}
                     onConfirm={handleDeleteAllNotes}

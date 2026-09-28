@@ -19,10 +19,10 @@ function GetNotes() {
     if (error) return <p> {error.message}   </p>;
     if (notes?.length === 0) return <EmptyNotes />;
     return (
-        <section className={`sm:grid sm:grid-cols-[auto] py-4 gap-4 ${isActiveNoteId || showFormMobile ? `hidden` : `flex flex-col `} $ `}>
+        <section dir="auto" className={`sm:grid sm:grid-cols-[auto] py-4 gap-4 ${isActiveNoteId || showFormMobile ? `hidden` : `flex flex-col `} $ `}>
             {notes?.map((note) => <Link to={`/note/${note.id}`} className={` p-4 cursor-pointer   ${activeNoteId === note.id ? `  border-l-5 border-[#D64E51]  bg-[#F4F5F7] rounded-xl` : ` border-b border-[#C3C5C7] `} `} key={note.id}>
-                <h2 className="title text-[18px]"> {note.title} </h2>
-                <p className=" text-[##838586] text-[15px] py-1 ">{(note.body).slice(0, 90)}...</p>
+                <h2 className="title text-[18px]" dir="auto"> {note.title} </h2>
+                <p className=" text-[##838586] text-[15px] py-1 " dir="auto">{(note.body).slice(0, 90)}...</p>
                 <span className="text-[#C1C2C4] ">{time(note.time)}</span>
             </Link>)}
         </section>

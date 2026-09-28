@@ -5,12 +5,13 @@ import deleteNote from '../services/deleteNote';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 interface PropsType {
-    isUpdate: boolean,
-    isCreating: boolean,
+    isLoading: boolean,
 }
-export default function DeleteNote({ isUpdate, isCreating }: PropsType) {
-    const {id} = useParams()
+export default function DeleteNote({ isLoading }: PropsType) {
+    const { id } = useParams();
+    const { t } = useTranslation();
     const [isOpen, setOpen] = useState<boolean>(false);
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -34,13 +35,17 @@ export default function DeleteNote({ isUpdate, isCreating }: PropsType) {
         <>
             <button
                 type="button"
+                aria-label="Delete note"
                 className="bg-[#434343] text-white font-medium text-sm px-5 py-2 rounded-lg self-end hover:bg-black transition-all cursor-pointer"
-                disabled={isCreating || isDeleting || isUpdate}
+                disabled={isLoading || isDeleting}
                 onClick={() => setOpen(true)}
             >
-                delete
+                {t("notes.deleteNote")}
             </button>
-            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen} title={"Delete"} confrimText={"delete Note"} children={"Are you sure you want to delete this note? This action cannot be undone."} isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
+            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen} title={t("modals.deleteNote.title")}
+                confirmText={t("modals.deleteNote.confirmText")}
+                children={t("modals.deleteNote.message")}
+                isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
         </>
     )
 }
