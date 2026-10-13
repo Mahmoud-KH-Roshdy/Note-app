@@ -1,17 +1,17 @@
-import { FaArchive, FaStickyNote, FaTrash } from "react-icons/fa";
+import { FaStickyNote, } from "react-icons/fa";
 import { HiBars3BottomLeft } from "react-icons/hi2";
-import { IoIosListBox } from "react-icons/io";
 import { useUi } from "../context/UiContext";
 import { Link } from "react-router";
+import { IoSettings } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 const liLists = [
-  { title: "Note", icon: <FaStickyNote />, id: 1, path: "/" },
-  { title: "setting", icon: <IoIosListBox />, id: 2, path: "/setting" },
-  { title: "Archive", icon: <FaArchive />, id: 3, path: "/" },
-  { title: "Trash", icon: <FaTrash />, id: 4, path: "/" },
+  { titleEn: "Notes", titleAr: "الملاحظات", icon: <FaStickyNote />, id: 1, path: "/" },
+  { titleEn: "Setting", titleAr: "الاعدادات", icon: <IoSettings />, id: 2, path: "/setting" },
 ];
 
 export default function Sidebar() {
   const { isOpen, setOpen } = useUi();
+  const { i18n } = useTranslation();
   function handleClickOnMobile() {
     if (window.innerWidth <= 768) {
       setOpen(() => true)
@@ -48,12 +48,12 @@ export default function Sidebar() {
               <HiBars3BottomLeft className="fill-[#7B7D7D] h-auto w-7 cursor-pointer hover:fill-white transition-colors" />
             </button>
           </div>
-          <ul className="flex flex-col  gap-1 text-[16px]">
+          <ul className="flex flex-col  gap-1 text-[16px]" dir={i18n.language === "en" ?  `ltl` : `rtl`}>
             {liLists.map((list) => (
               <li key={list.id}>
                 <Link to={list.path} onClick={handleClickOnMobile} className="flex items-center gap-4 px-4 py-3 rounded-xl cursor-pointer hover:bg-[#474747] transition-all duration-200 active:scale-[0.98]">
                   <span className="text-lg text-slate-300">{list.icon}</span>
-                  <span className="font-medium">{list.title}</span>
+                  <span className="font-medium">{i18n.language === "en" ?  list.titleEn : list.titleAr}</span>
                 </Link>
               </li>
             ))}

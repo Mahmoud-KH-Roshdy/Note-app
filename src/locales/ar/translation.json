@@ -1,29 +1,82 @@
 {
-    "auth": {
-        "login": "تسجيل الدخول",
-        "createAccount": "إنشاء حساب",
-        "signOut": "تسجيل الخروج",
-        "deleteAccount": "حذف الحساب"
-    },
-    "notes": {
-        "title": "الملاحظات",
-        "titlePlaceholder": "العنوان",
-        "notePlaceholder": "ملاحظة...",
-        "noNotesYet": "لا توجد ملاحظات بعد",
-        "createFirstNote": "أنشئ ملاحظتك الأولى للبدء",
-        "saveNote": "حفظ الملاحظة",
-        "editNote": "تعديل الملاحظة",
-        "deleteNote": "حذف الملاحظة",
-        "deleteNotes": "حذف الملاحظات"
-    },
-    "settings": {
-        "title": "الإعدادات"
-    },
-    "modals": {
-        "deleteNote": {
-            "title": "حذف",
-            "confirmText": "حذف الملاحظة",
-            "message": "انت متاكد انك عايز تمسح النوتة؟ القرار دا مفيش رجعة فيه"
-        }
+  "auth": {
+    "login": "تسجيل الدخول",
+    "createAccount": "إنشاء حساب",
+    "signOut": "تسجيل الخروج",
+    "deleteAccount": "حذف الحساب"
+  },
+  "notes": {
+    "title": "الملاحظات",
+    "titlePlaceholder": "العنوان",
+    "notePlaceholder": "ملاحظة...",
+    "noNotesYet": "لا توجد ملاحظات بعد",
+    "createFirstNote": "أنشئ ملاحظتك الأولى للبدء",
+    "saveNote": "حفظ الملاحظة",
+    "editNote": "تعديل الملاحظة",
+    "deleteNote": "حذف الملاحظة",
+    "deleteNotes": "حذف الملاحظات",
+    "toast": {
+      "createSuccess": "تم إنشاء الملاحظة بنجاح",
+      "createError": "فشل إنشاء الملاحظة",
+      "updateSuccess": "تم تعديل الملاحظة بنجاح",
+      "noChanges": "مافيش أي تغييرات حصلت",
+      "deleteSuccess": "اتمسحت الملاحظة بنجاح",
+      "deleteError": "فشل حذف الملاحظة"
     }
+  },
+  "settings": {
+    "notes": {
+      "sectionTitle": "الملاحظات",
+      "deleteAllTitle": "حذف جميع الملاحظات",
+      "deleteAllDescription": "إزالة جميع الملاحظات التي قمت بكتابتها بشكل نهائي",
+      "deleteBtn": "حذف الملاحظات",
+      "deleteSuccess": "تم الحذف بنجاح",
+      "deleteError": "فشل في حذف جميع الملاحظات"
+    },
+    "account": {
+      "sectionTitle": "الحساب",
+      "signOutTitle": "تسجيل الخروج",
+      "signOutDescription": "هتحتاج تسجل دخول تاني عشان توصل لملاحظاتك",
+      "signOutBtn": "تسجيل الخروج",
+      "deleteAccountTitle": "حذف الحساب",
+      "deleteAccountDescription": "ده بيمسح حسابك وكل ملاحظاتك للأبد",
+      "deleteAccountBtn": "حذف",
+      "signOutSuccess": "تم تسجيل الخروج بنجاح",
+      "signOutError": "فشل تسجيل الخروج من الحساب",
+      "deleteAccountSuccess": "تم حذف الحساب بنجاح",
+      "deleteAccountError": "فشل حذف الحساب"
+    },
+    "general": {
+      "sectionTitle": "عام",
+      "languageTitle": "اللغة",
+      "languageDescription": "اختار اللغة اللي تحب تبدل ليها",
+      "currentLanguage": "العربية"
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "fallbackUser": "م"
+    }
+  },
+  "modals": {
+    "deleteNotes": {
+      "title": "حذف جميع الملاحظات",
+      "confirm": "حذف الملاحظات",
+      "message": "هل أنت متاكد من أنك عايز تحذف كل الملاحظات؟"
+    },
+    "deleteNote": {
+      "title": "حذف الملاحظة",
+      "confirmText": "حذف",
+      "message": "انت متأكد انك عايز تمسح النوتة دي؟"
+    },
+    "signOut": {
+      "title": "تسجيل الخروج",
+      "confirm": "تسجيل الخروج",
+      "message": "انت متأكد انك عايز تخرج؟"
+    },
+    "deleteAccount": {
+      "title": "حذف الحساب",
+      "confirm": "حذف الحساب",
+      "message": "انت متأكد؟ بروفايلك وكل الملاحظات اللي حفظتها هتمسح للأبد."
+    }
+  }
 }

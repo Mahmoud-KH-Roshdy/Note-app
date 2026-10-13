@@ -1,4 +1,3 @@
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ConfirmDeleteModal from '../../../components/ConfirmDeleteModal';
 import deleteNote from '../services/deleteNote';
@@ -7,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 interface PropsType {
-    isLoading: boolean,
+    isLoading: boolean;
 }
 export default function DeleteNote({ isLoading }: PropsType) {
     const { id } = useParams();
@@ -19,15 +18,16 @@ export default function DeleteNote({ isLoading }: PropsType) {
         mutationFn: deleteNote,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["Notes"] });
-            toast.success("Delteted Successfully");
-            navigate("/")
+            toast.success(t("notes.toast.deleteSuccess"));
+            navigate("/");
         },
         onError: (error) => {
-            toast.error("Failed To Delete");
+            toast.error(t("notes.toast.deleteError"));
             console.error(error.message);
         }
-    })
-    function hanldeDelete() {
+    });
+
+    function handleDelete() {
         if (!id) return;
         deletedFn(id);
     }
@@ -36,16 +36,22 @@ export default function DeleteNote({ isLoading }: PropsType) {
             <button
                 type="button"
                 aria-label="Delete note"
-                className="bg-[#434343] text-white font-medium text-sm px-5 py-2 rounded-lg self-end hover:bg-black transition-all cursor-pointer"
+                className="bg-[#434343] text-white font-medium text-sm px-5 py-2 rounded-lg self-end hover:bg-black transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isLoading || isDeleting}
                 onClick={() => setOpen(true)}
             >
                 {t("notes.deleteNote")}
             </button>
-            <ConfirmDeleteModal isOpen={isOpen} onOpenChange={setOpen} title={t("modals.deleteNote.title")}
+            <ConfirmDeleteModal
+                isOpen={isOpen}
+                onOpenChange={setOpen}
+                title={t("modals.deleteNote.title")}
                 confirmText={t("modals.deleteNote.confirmText")}
-                children={t("modals.deleteNote.message")}
-                isDeleting={isDeleting} onConfirm={() => hanldeDelete()} />
+                isDeleting={isDeleting}
+                onConfirm={handleDelete}
+            >
+                {t("modals.deleteNote.message")}
+            </ConfirmDeleteModal>
         </>
-    )
+    );
 }

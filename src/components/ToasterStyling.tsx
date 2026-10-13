@@ -1,25 +1,26 @@
 import toast, { ToastBar, Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 function ToasterStyling() {
+    const {i18n} = useTranslation();
     return (
-        <Toaster 
-            position="top-center"
-            gutter={12}
+        <Toaster
+            position={i18n.language === "ar" ? "bottom-left" : "bottom-right"} gutter={12}
             containerStyle={{ margin: "8px" }}
             toastOptions={{
                 success: {
                     duration: 3000,
                 },
                 error: {
-                    duration: 5000,
+                    duration: 3000,
                 },
                 style: {
                     fontSize: "16px",
                     maxWidth: "500px",
                     padding: "16px 24px",
-                    backgroundColor: "#ffffff", 
+                    backgroundColor: "#ffffff",
                     color: "#000000",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", 
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                 }
             }}
         >
@@ -50,13 +51,13 @@ function ToasterStyling() {
                                     }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.background = '#ef4444';
-                                    
+
                                         const svg = e.currentTarget.querySelector('svg');
                                         if (svg) svg.style.stroke = 'white';
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.background = '#f3f4f6';
-                                        
+
                                         const svg = e.currentTarget.querySelector('svg');
                                         if (svg) svg.style.stroke = '#374151';
                                     }}
