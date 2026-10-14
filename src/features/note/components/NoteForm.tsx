@@ -4,6 +4,7 @@ import FormError from "../../../components/FormError";
 import { useTranslation } from "react-i18next";
 import useNote from "../hooks/useNote";
 import DeleteNote from "./DeleteNote";
+import type React from "react";
 
 interface NoteFormInput {
     activeNote: Notes | undefined;
@@ -14,15 +15,24 @@ export default function Form({ activeNote, isActiveNoteId }: NoteFormInput) {
     const { t } = useTranslation();
     const { showFormMobile } = useUi();
     const { register, errors, onSubmit, isLoading } =
-    useNote({ activeNote, isActiveNoteId });
+        useNote({ activeNote, isActiveNoteId });
+    function SaveNoteByControl(e: React.KeyboardEvent<HTMLTextAreaElement> ) {
+        if (e.key === "Control") {
+            e.currentTarget.form?.requestSubmit();
+        }
+    }
     return (
         <div className={`sm:block bg-gray-50 h-full overflow-hidden ${isActiveNoteId || showFormMobile ? `` : `hidden`}`} >
             <form className={`p-4 sm:flex sm:flex-col sm:justify-center h-full gap-4 ${isActiveNoteId || showFormMobile ? `flex flex-col justify-center` : `hidden`}`} onSubmit={onSubmit} >
                 <header className="flex justify-center items-center ">
-                    <input dir="auto" type="text" className="focus:outline-0 title text-xl font-bold w-full" placeholder={t("notes.titlePlaceholder")} {...register("title", { required: "The title is requrid to add new note" })} />
+                    <input dir="auto" type="text" className="focus:outline-0 title text-xl font-bold w-full" placeholder={t("notes.titlePlaceholder")} {...register("title", { required: t("notes.errors.titleRequired")})} />
                     <FormError message={errors.title?.message} />
                 </header>
-                <textarea dir="auto" id="text" className=" flex-1 w-full focus:outline-0 resize-none text-xl" placeholder={t("notes.notePlaceholder")}  {...register("body", { required: "The note is requrid to add new note" })}></textarea>
+                <textarea dir="auto" id="text" className=" flex-1 w-full focus:outline-0 resize-none text-xl"
+                    placeholder={t("notes.notePlaceholder")}
+                    {...register("body", { required: t("notes.errors.bodyRequired") })}
+                    onKeyDown={(e) => SaveNoteByControl(e)}
+                    ></textarea>
                 <FormError message={errors.body?.message} />
                 <div className="flex justify-center gap-2">
                     <button
@@ -33,7 +43,7 @@ export default function Form({ activeNote, isActiveNoteId }: NoteFormInput) {
                     >
                         {`${isActiveNoteId ? t("notes.editNote") : t("notes.saveNote")}`}
                     </button>
-                    <DeleteNote isLoading={isLoading}/>
+                    <DeleteNote  isLoading={isLoading} />
                 </div>
 
             </form>

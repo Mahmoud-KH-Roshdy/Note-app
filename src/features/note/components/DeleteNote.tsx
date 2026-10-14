@@ -1,36 +1,14 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ConfirmDeleteModal from '../../../components/ConfirmDeleteModal';
-import deleteNote from '../services/deleteNote';
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import useDeleteNote from '../hooks/useDeleteNote';
 interface PropsType {
     isLoading: boolean;
 }
 export default function DeleteNote({ isLoading }: PropsType) {
-    const { id } = useParams();
     const { t } = useTranslation();
     const [isOpen, setOpen] = useState<boolean>(false);
-    const navigate = useNavigate();
-    const queryClient = useQueryClient();
-    const { mutate: deletedFn, isPending: isDeleting } = useMutation({
-        mutationFn: deleteNote,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["Notes"] });
-            toast.success(t("notes.toast.deleteSuccess"));
-            navigate("/");
-        },
-        onError: (error) => {
-            toast.error(t("notes.toast.deleteError"));
-            console.error(error.message);
-        }
-    });
-
-    function handleDelete() {
-        if (!id) return;
-        deletedFn(id);
-    }
+    const { isDeleting, handleDelete } = useDeleteNote();
     return (
         <>
             <button

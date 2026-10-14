@@ -15,6 +15,10 @@
     "editNote": "Edit Note",
     "deleteNote": "Delete Note",
     "deleteNotes": "Delete Notes",
+    "errors": {
+      "titleRequired": "العنوان مطلوب",
+      "bodyRequired": "محتوى الملاحظة مطلوب"
+    },
     "toast": {
       "createSuccess": "Note created successfully",
       "createError": "Failed to create note",

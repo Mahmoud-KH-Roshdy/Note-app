@@ -15,6 +15,10 @@
     "editNote": "تعديل الملاحظة",
     "deleteNote": "حذف الملاحظة",
     "deleteNotes": "حذف الملاحظات",
+    "errors": {
+      "titleRequired": "Title is required",
+      "bodyRequired": "Note body is required"
+    },
     "toast": {
       "createSuccess": "تم إنشاء الملاحظة بنجاح",
       "createError": "فشل إنشاء الملاحظة",

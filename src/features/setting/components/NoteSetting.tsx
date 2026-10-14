@@ -1,26 +1,14 @@
 import { useState } from "react";
 import ConfirmDeleteModal from "../../../components/ConfirmDeleteModal";
-import deleteAllNotes from "../../note/services/deleteAllNotes";
-import { auth } from "../../../services/firebase";
-import { toast } from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
 import SettingActionRow from "./SettingActionRow";
 import { useTranslation } from "react-i18next";
+import useDeleteNotes from "../hooks/useDeleteNotes";
 
 
 export default function NoteSetting() {
     const [wantDeleteNotes, setWantDeleteNotes] = useState<boolean>(false);
-    const { i18n, t } = useTranslation()
-    const { mutate: handleDeleteAllNotes, isPending: isDeleting } = useMutation({
-        mutationFn: () => deleteAllNotes(auth.currentUser?.uid),
-        onSuccess: () => {
-            toast.success(" Deleted Successfully");
-        },
-        onError: (error) => {
-            if (error) toast.error("Faild to delete All notes");
-            console.error(error.cause);
-        }
-    });
+    const { i18n, t } = useTranslation();
+    const {handleDeleteAllNotes,isDeleting} = useDeleteNotes();
     return (
         <section className="" dir={ i18n.language === "en" ? "ltl":"rtl"}>
             <h1 className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">{t("settings.notes.sectionTitle")}</h1>
