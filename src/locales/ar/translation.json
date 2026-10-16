@@ -1,9 +1,45 @@
 {
   "auth": {
-    "login": "تسجيل الدخول",
-    "createAccount": "إنشاء حساب",
-    "signOut": "تسجيل الخروج",
-    "deleteAccount": "حذف الحساب"
+    "login": {
+      "title": "سجل دخول لحسابك",
+      "subtitle": "أهلاً بيك تاني، سجل دخول عشان تنظم ملاحظاتك",
+      "submitBtn": "تسجيل الدخول",
+      "submitting": "جاري تسجيل الدخول...",
+      "noAccount": "معندكش حساب؟",
+      "signUpLink": "أنشئ حساب جديد",
+      "successToast": "تم تسجيل الدخول بنجاح",
+      "errors": {
+        "invalidCredential": "البريد الإلكتروني أو كلمة السر غير صحيحة",
+        "generic": "حصلت مشكلة، حاول تاني"
+      }
+    },
+    "signUp": {
+      "title": "إنشاء حساب جديد",
+      "subtitle": "سجل عشان تحفظ ملاحظاتك في أمان",
+      "submitBtn": "إنشاء حساب",
+      "submitting": "جاري إنشاء الحساب...",
+      "hasAccount": "عندك حساب بالفعل؟",
+      "signInLink": "تسجيل الدخول",
+      "successToast": "تم إنشاء الحساب بنجاح",
+      "errors": {
+        "emailInUse": "البريد الإلكتروني ده مسجل قبل كده",
+        "weakPassword": "كلمة السر لازم تكون 6 أرقام أو حروف على الأقل",
+        "invalidEmail": "صيغة البريد الإلكتروني مش صحيحة",
+        "generic": "فشل إنشاء الحساب، حاول تاني"
+      }
+    },
+    "labels": {
+      "email": "البريد الإلكتروني",
+      "password": "كلمة السر"
+    },
+    "placeholders": {
+      "email": "name@example.com",
+      "password": "••••••••"
+    },
+    "validation": {
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "passwordRequired": "كلمة السر مطلوبة"
+    }
   },
   "notes": {
     "title": "الملاحظات",

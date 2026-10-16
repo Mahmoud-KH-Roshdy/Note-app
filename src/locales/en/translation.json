@@ -1,9 +1,45 @@
 {
-  "auth": {
-    "login": "Log In",
-    "createAccount": "Create Account",
-    "signOut": "Sign Out",
-    "deleteAccount": "Delete Account"
+"auth": {
+    "login": {
+      "title": "Login into your account",
+      "subtitle": "Welcome back, login to organize your personal notes",
+      "submitBtn": "Login",
+      "submitting": "Login...",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up",
+      "successToast": "Logged in successfully",
+      "errors": {
+        "invalidCredential": "Incorrect email or password",
+        "generic": "Something went wrong, please try again"
+      }
+    },
+    "signUp": {
+      "title": "Create Account",
+      "subtitle": "Sign up to securely organize your personal notes",
+      "submitBtn": "Create Account",
+      "submitting": "Creating Account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign In",
+      "successToast": "Account created successfully",
+      "errors": {
+        "emailInUse": "This email is already registered",
+        "weakPassword": "Password should be at least 6 characters",
+        "invalidEmail": "Invalid email address format",
+        "generic": "Failed to create account, please try again"
+      }
+    },
+    "labels": {
+      "email": "Email address",
+      "password": "Password"
+    },
+    "placeholders": {
+      "email": "name@example.com",
+      "password": "••••••••"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required"
+    }
   },
   "notes": {
     "title": "Notes",
