@@ -1,59 +1,95 @@
-# Notes App
+# 📝 Notes App
 
-A simple notes app I built to practice full-stack patterns in React — auth, real-time data, and a UI that actually works well on mobile.
+> A production-ready, internationalized notes application built to practice modern full-stack patterns in React — featuring secure authentication, real-time data sync, and a fully responsive mobile-first UI.
 
-You can sign up, write notes, edit them, delete them, and everything stays in sync with Firestore.
+You can sign up, switch seamlessly between **English** and **Egyptian Arabic**, write notes, edit them, delete them, and everything stays in sync with Firestore.
 
-🔗 **Live demo:** [note-app-tau-opal.vercel.app](https://note-app-tau-opal.vercel.app)
+🔗 **Live Demo:** [note-app-tau-opal.vercel.app](https://note-app-tau-opal.vercel.app)
 
-## What it does
+---
 
-- Full auth flow — sign up, login, logout, delete account (and yes, deleting your account actually deletes your notes too, not just the auth entry)
-- Create, read, update, delete notes — all synced with Firestore in real time
-- Each note has its own URL (`/note/:id`), so you can bookmark or share a link straight to a specific note
-- Responsive — on mobile it behaves like a real app: the notes list and the editor don't fight for space, they take turns
-- Toast notifications for pretty much everything (create, update, delete, errors)
-- Empty states instead of a blank white screen when you have zero notes
+## ✨ Features
 
-## Stack
+* 🌍 **Bilingual & i18n Ready** — Full support for English and Egyptian Arabic (fully localized UI, toasts, and validation messages) via `react-i18next`.
+* 🔐 **Full Auth Flow** — Secure sign up, login, logout, and account deletion (linked with Firestore cleanup to remove user data).
+* ⚡ **Real-time CRUD** — Create, read, update, and delete notes, seamlessly synced with Firestore.
+* 🔗 **URL-Driven State** — Each note has its own URL (`/note/:id`), making it bookmarkable and refresh-proof.
+* ⌨️ **Keyboard Shortcuts** — Press `CTRL` to quickly save notes for smooth UX.
+* 📱 **Responsive Mobile Layout** — Designed like a native app where the notes list and editor take turns on mobile screens.
+* 🔔 **Polished UX** — Global toast notifications (`react-hot-toast`) and clean empty states for all actions and errors.
 
-- **React** + **TypeScript**
-- **React Router** — URL-driven state, not local state pretending to be routing
-- **TanStack Query** — for fetching/caching notes and handling mutations
-- **React Hook Form** — form handling + validation
-- **Firebase** — Auth + Firestore
-- **Tailwind CSS**
-## Architecture
+---
 
-The codebase is organized by **feature**, not by file type:
-```
+## 🛠 Tech Stack
+
+| Category | Technology |
+| :--- | :--- |
+| **Frontend Framework** | React 19 + TypeScript |
+| **Routing** | React Router v7 |
+| **Data Fetching & State** | TanStack Query (React Query v5) |
+| **Form Handling** | React Hook Form |
+| **Styling** | Tailwind CSS |
+| **Backend & Auth** | Firebase (Auth & Firestore) |
+| **Internationalization** | react-i18next |
+| **UI Feedback** | react-hot-toast |
+
+---
+
+## 📐 Architecture
+
+The codebase is strictly organized by **feature** for maximum maintainability and scalability:
+
+```text
 src/
 ├── features/
-│ ├── auth/ → auth-related services,  auth-related components
-│ └── note/ → note CRUD services, note-related components
-│ └── setting/ → setting services, setting-related components
-├── components/ → shared, reusable UI (SettingActionRow, ConfirmDeleteModal, Loading...)
-├── pages/ → route-level pages
-└── services/ → firebase config
+│   ├── auth/       # Auth-related hooks, services, and components
+│   ├── note/       # Note CRUD hooks, services, and components
+│   └── setting/    # Settings components and i18n preferences
+├── components/     # Shared, reusable UI (ConfirmDeleteModal, FormError, etc.)
+├── pages/          # Route-level pages
+└── services/       # Firebase configuration & global services
 ```
 
-## Running it locally
+---
 
-```bash
-git clone https://github.com/Mahmoud-KH-Roshdy/Note-app.git
-cd Note-app
-npm install
-npm run dev
-```
+## 🚀 Getting Started
 
-You'll need your own Firebase project — create one, enable Auth (email/password) and Firestore, then drop your config into `src/services/firebase.ts`.
+### Prerequisites
+Make sure you have Node.js installed on your machine.
 
-## Notes to self / things I learned building this
+### Installation
 
-- Spent way too long debugging a race condition between a form and a query that wasn't done loading yet — turns out the fix wasn't `reset()`, it was just not rendering the form until the data was actually there.
-- Switched from storing "the active note" in Context to reading it straight from the URL. Refresh-proof, shareable, way less state to keep in sync.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Mahmoud-KH-Roshdy/Note-app.git
+   cd Note-app
+   ```
 
-## Coming soon
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-- Search
-- Arabic/English toggle
+3. **Configure Environment:**
+   Create a Firebase project, enable **Authentication** (Email/Password) and **Firestore Database**, then place your keys inside `src/services/firebase.ts`.
+
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 💡 Engineering Insights & Key Learnings
+
+> 💡 **Race Condition Fix:** Spent time debugging a race condition between a form and a query that wasn't done loading yet — turns out the fix wasn't `reset()`, it was conditional rendering until the data was ready.
+>
+> 💡 **URL as Single Source of Truth:** Switched from storing "the active note" in Context to reading it straight from the URL parameter. This made notes refresh-proof, shareable, and greatly reduced state sync bugs.
+>
+> 💡 **Internationalization Architecture:** Built a clean `i18n` abstraction handling RTL/LTR layout shifts and dynamic error translation for Firebase auth codes.
+
+---
+
+## 📌 Roadmap
+
+- [ ] Search & Filtering
